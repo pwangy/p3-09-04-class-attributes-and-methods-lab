@@ -7,8 +7,8 @@ class Song:
 
     def __init__(self, name, artist, genre):
         self.name = name
-        self.artist = artist
         self.genre = genre
+        self.artist = artist
         type(self).add_song_to_count()
         type(self).add_to_genres(genre)
         type(self).add_to_artists(artist)
@@ -31,6 +31,8 @@ class Song:
 
     @classmethod
     def add_to_genre_count(cls, genre):
+        #! The next line is an alternative for line 33
+        # if cls.genre_count.get(genre):
         if genre in cls.genre_count:
             cls.genre_count[genre] += 1
         else:
@@ -45,6 +47,7 @@ class Song:
 
     @classmethod
     def find_artist_with_most_songs(cls):
+        # sort in desc order and then pluck first el if any
         try:
             return max(
                 cls.artist_count, key=lambda artist_name: cls.artist_count.get(artist_name, 0)
@@ -53,10 +56,8 @@ class Song:
             print(e)
             return False
 
-
-# s1 = Song("99 Problems", "Jay-Z", "Rap")
-# s2 = Song("Halo", "Depeche Mode", "New Wave")
-# s3 = Song("Clean", "Depeche Mode", "New Wave")
+# s1 = Song("99 Problems", "Jay Z", "Rap")
+# s2 = Song("Halo", "Beyonce", "Pop")
+# s3 = Song("I was here", "Beyonce", "Pop")
 # s4 = Song("Smells Like Teen Spirit", "Nirvana", "Rock")
-# s5 = Song("Happy Birthday, What Am I Here For?", "Kahimi Kari", "Pop")
-print("done")
+print('done')
